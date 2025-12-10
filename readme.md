@@ -1,0 +1,1 @@
+# just run with python or compile with pyinstaller :P
