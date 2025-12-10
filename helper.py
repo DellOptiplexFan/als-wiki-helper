@@ -106,13 +106,13 @@ def parse_csv_to_template(csv_text):
             extra_lines.append(f"|Text_Line_1='''{upgrade['Attack Name']}'''")
             
             status_effects = []
-            if 'Status Effect 1' in upgrade and upgrade['Status Effect 1']:
-                status_effects.append(upgrade['Status Effect 1'])
-            if 'Status Effect 2' in upgrade and upgrade['Status Effect 2']:
-                status_effects.append(upgrade['Status Effect 2'])
+            i = 1
+            while f'Status Effect {i}' in upgrade and upgrade[f'Status Effect {i}']:
+                status_effects.append(upgrade[f'Status Effect {i}'])
+                i += 1
             
             if status_effects:
-                status_text = "Attack inflict " + " and ".join([f"{{{{Passive|{s}}}}}" for s in status_effects])
+                status_text = "Attacks inflict " + " and ".join([f"{{{{Passive|{s}}}}}" for s in status_effects])
                 extra_lines.append(f"|Text_Line_2='''{status_text}'''")
             
             if previous_aoe and previous_aoe != current_aoe:
